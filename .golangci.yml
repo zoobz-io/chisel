@@ -16,9 +16,12 @@ linters:
     # Security
     - gosec
     - noctx
+    - bodyclose
+    - sqlclosecheck
 
     # Error handling
     - errorlint
+    - errchkjson
     - wastedassign
 
     # Best practices

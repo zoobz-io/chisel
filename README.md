@@ -121,7 +121,7 @@ type User struct {
 
 Output:
 
-```
+```text
 [function] Authenticate
   Lines: 4-6
 [class] User

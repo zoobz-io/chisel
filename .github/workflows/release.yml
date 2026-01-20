@@ -1,0 +1,105 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.25'
+
+    - name: Validate release
+      run: |
+        # Ensure tests pass before release
+        go test -race ./... ./golang/... ./markdown/... ./typescript/... ./python/... ./rust/... ./testing/...
+
+    - name: Extract version
+      id: version
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/}
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Releasing version: $VERSION"
+
+    - name: Create submodule tags
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+
+        # Tag each submodule with prefixed version
+        MODULES="golang markdown typescript python rust testing"
+
+        for module in $MODULES; do
+          TAG="${module}/${VERSION}"
+          echo "Creating tag: $TAG"
+          git tag "$TAG" || echo "Tag $TAG already exists"
+        done
+
+        # Push all tags
+        git push origin --tags
+
+    - name: Generate release notes
+      id: notes
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+
+        # Get commits since last tag
+        PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+
+        if [ -n "$PREV_TAG" ]; then
+          NOTES=$(git log --pretty=format:"- %s (%h)" "$PREV_TAG"..HEAD --no-merges)
+        else
+          NOTES=$(git log --pretty=format:"- %s (%h)" --no-merges -20)
+        fi
+
+        # Write to file for multiline output
+        echo "$NOTES" > release_notes.txt
+
+    - name: Create GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        name: ${{ steps.version.outputs.version }}
+        body_path: release_notes.txt
+        draft: false
+        prerelease: ${{ contains(steps.version.outputs.version, '-') }}
+        generate_release_notes: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Release summary
+      run: |
+        VERSION=${{ steps.version.outputs.version }}
+        echo "### 🚀 Release $VERSION" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "#### Submodule Tags Created" >> $GITHUB_STEP_SUMMARY
+        echo "- \`golang/$VERSION\`" >> $GITHUB_STEP_SUMMARY
+        echo "- \`markdown/$VERSION\`" >> $GITHUB_STEP_SUMMARY
+        echo "- \`typescript/$VERSION\`" >> $GITHUB_STEP_SUMMARY
+        echo "- \`python/$VERSION\`" >> $GITHUB_STEP_SUMMARY
+        echo "- \`rust/$VERSION\`" >> $GITHUB_STEP_SUMMARY
+        echo "- \`testing/$VERSION\`" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "#### Installation" >> $GITHUB_STEP_SUMMARY
+        echo '```bash' >> $GITHUB_STEP_SUMMARY
+        echo "# Main module" >> $GITHUB_STEP_SUMMARY
+        echo "go get github.com/zoobzio/chisel@$VERSION" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "# Language providers" >> $GITHUB_STEP_SUMMARY
+        echo "go get github.com/zoobzio/chisel/golang@$VERSION" >> $GITHUB_STEP_SUMMARY
+        echo "go get github.com/zoobzio/chisel/typescript@$VERSION" >> $GITHUB_STEP_SUMMARY
+        echo '```' >> $GITHUB_STEP_SUMMARY
