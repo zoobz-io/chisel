@@ -42,7 +42,7 @@ clean: ## Remove generated files
 	@find . -name "*.out" -delete
 
 install-tools: ## Install development tools
-	@go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.7.2
+	@go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.8.0
 
 install-hooks: ## Install git pre-commit hook
 	@mkdir -p .git/hooks
