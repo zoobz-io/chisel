@@ -1,0 +1,49 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 6 * * 1'
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.25'
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: go
+        queries: security-and-quality
+
+    - name: Build
+      run: |
+        go build ./... ./golang/... ./markdown/... ./typescript/... ./python/... ./rust/... ./testing/...
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        category: "/language:go"
+
+    - name: Security summary
+      if: always()
+      run: |
+        echo "### 🔒 CodeQL Security Analysis" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "Security analysis completed. Check the Security tab for detailed findings." >> $GITHUB_STEP_SUMMARY
