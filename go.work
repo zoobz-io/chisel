@@ -1,0 +1,12 @@
+go 1.24.5
+
+use (
+	.
+	./golang
+	./markdown
+	./python
+	./rust
+	./testing
+	./testing/benchmarks
+	./typescript
+)
