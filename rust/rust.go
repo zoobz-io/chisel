@@ -24,7 +24,7 @@ func (p *Provider) Language() chisel.Language {
 }
 
 // Chunk parses Rust source and extracts semantic chunks.
-func (p *Provider) Chunk(_ context.Context, filename string, content []byte) ([]chisel.Chunk, error) {
+func (p *Provider) Chunk(_ context.Context, _ string, content []byte) ([]chisel.Chunk, error) {
 	parser := sitter.NewParser()
 	parser.SetLanguage(rust.GetLanguage())
 
@@ -56,9 +56,9 @@ func walkNode(node *sitter.Node, content []byte, ctx []string, chunks *[]chisel.
 
 		// Get the type being implemented
 		typeName := getImplTypeName(node, content)
-		newCtx := ctx
+		newCtx := copyContext(ctx)
 		if typeName != "" {
-			newCtx = append(ctx, "impl "+typeName)
+			newCtx = append(newCtx, "impl "+typeName)
 		}
 
 		// Walk children with impl context

@@ -21,7 +21,7 @@ go test -v ./testing/integration/...
 
 ## Structure
 
-```
+```text
 integration/
 ├── README.md
 ├── testdata/           # Sample source files

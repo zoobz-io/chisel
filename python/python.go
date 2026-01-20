@@ -24,7 +24,7 @@ func (p *Provider) Language() chisel.Language {
 }
 
 // Chunk parses Python source and extracts semantic chunks.
-func (p *Provider) Chunk(_ context.Context, filename string, content []byte) ([]chisel.Chunk, error) {
+func (p *Provider) Chunk(_ context.Context, _ string, content []byte) ([]chisel.Chunk, error) {
 	parser := sitter.NewParser()
 	parser.SetLanguage(python.GetLanguage())
 
@@ -55,7 +55,7 @@ func walkNode(node *sitter.Node, content []byte, ctx []string, chunks *[]chisel.
 
 		// Walk children with class context
 		className := getChildByField(node, "name", content)
-		newCtx := append(ctx, "class "+className)
+		newCtx := append(copyContext(ctx), "class "+className)
 		for i := 0; i < int(node.ChildCount()); i++ {
 			child := node.Child(i)
 			if child.Type() == "block" {

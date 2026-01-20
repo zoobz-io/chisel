@@ -14,7 +14,7 @@ func TestFindBySymbol(t *testing.T) {
 
 	result := FindBySymbol(chunks, "foo")
 	if result == nil {
-		t.Error("expected to find foo")
+		t.Fatal("expected to find foo")
 	}
 	if result.Symbol != "foo" {
 		t.Errorf("Symbol = %q, want %q", result.Symbol, "foo")
@@ -34,7 +34,7 @@ func TestFindByKind(t *testing.T) {
 
 	result := FindByKind(chunks, chisel.KindClass)
 	if result == nil {
-		t.Error("expected to find class")
+		t.Fatal("expected to find class")
 	}
 	if result.Kind != chisel.KindClass {
 		t.Errorf("Kind = %v, want %v", result.Kind, chisel.KindClass)

@@ -4,7 +4,7 @@ Test utilities and infrastructure for chisel.
 
 ## Structure
 
-```
+```text
 testing/
 ├── helpers.go          # Test assertion helpers
 ├── helpers_test.go     # Tests for helpers

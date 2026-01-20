@@ -22,7 +22,7 @@ func (p *Provider) Language() chisel.Language {
 }
 
 // Chunk splits Markdown content into sections based on headers.
-func (p *Provider) Chunk(_ context.Context, filename string, content []byte) ([]chisel.Chunk, error) {
+func (p *Provider) Chunk(_ context.Context, _ string, content []byte) ([]chisel.Chunk, error) {
 	text := string(content)
 	lines := strings.Split(text, "\n")
 
