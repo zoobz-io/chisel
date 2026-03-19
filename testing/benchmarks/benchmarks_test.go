@@ -4,11 +4,11 @@ import (
 	"context"
 	"testing"
 
-	"github.com/zoobzio/chisel/golang"
-	"github.com/zoobzio/chisel/markdown"
-	"github.com/zoobzio/chisel/python"
-	"github.com/zoobzio/chisel/rust"
-	"github.com/zoobzio/chisel/typescript"
+	"github.com/zoobz-io/chisel/golang"
+	"github.com/zoobz-io/chisel/markdown"
+	"github.com/zoobz-io/chisel/python"
+	"github.com/zoobz-io/chisel/rust"
+	"github.com/zoobz-io/chisel/typescript"
 )
 
 // Sample sources for benchmarking

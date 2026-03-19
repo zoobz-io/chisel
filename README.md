@@ -1,13 +1,13 @@
 # chisel
 
-[![CI Status](https://github.com/zoobzio/chisel/workflows/CI/badge.svg)](https://github.com/zoobzio/chisel/actions/workflows/ci.yml)
-[![codecov](https://codecov.io/gh/zoobzio/chisel/graph/badge.svg?branch=main)](https://codecov.io/gh/zoobzio/chisel)
-[![Go Report Card](https://goreportcard.com/badge/github.com/zoobzio/chisel)](https://goreportcard.com/report/github.com/zoobzio/chisel)
-[![CodeQL](https://github.com/zoobzio/chisel/workflows/CodeQL/badge.svg)](https://github.com/zoobzio/chisel/security/code-scanning)
-[![Go Reference](https://pkg.go.dev/badge/github.com/zoobzio/chisel.svg)](https://pkg.go.dev/github.com/zoobzio/chisel)
-[![License](https://img.shields.io/github/license/zoobzio/chisel)](LICENSE)
-[![Go Version](https://img.shields.io/github/go-mod/go-version/zoobzio/chisel)](go.mod)
-[![Release](https://img.shields.io/github/v/release/zoobzio/chisel)](https://github.com/zoobzio/chisel/releases)
+[![CI Status](https://github.com/zoobz-io/chisel/workflows/CI/badge.svg)](https://github.com/zoobz-io/chisel/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/zoobz-io/chisel/graph/badge.svg?branch=main)](https://codecov.io/gh/zoobz-io/chisel)
+[![Go Report Card](https://goreportcard.com/badge/github.com/zoobz-io/chisel)](https://goreportcard.com/report/github.com/zoobz-io/chisel)
+[![CodeQL](https://github.com/zoobz-io/chisel/workflows/CodeQL/badge.svg)](https://github.com/zoobz-io/chisel/security/code-scanning)
+[![Go Reference](https://pkg.go.dev/badge/github.com/zoobz-io/chisel.svg)](https://pkg.go.dev/github.com/zoobz-io/chisel)
+[![License](https://img.shields.io/github/license/zoobz-io/chisel)](LICENSE)
+[![Go Version](https://img.shields.io/github/go-mod/go-version/zoobz-io/chisel)](go.mod)
+[![Release](https://img.shields.io/github/v/release/zoobz-io/chisel)](https://github.com/zoobz-io/chisel/releases)
 
 AST-aware code chunking for semantic search and embeddings. Chisel parses source code into meaningful units—functions, classes, methods—preserving the context that makes code searchable.
 
@@ -52,17 +52,17 @@ Feed chunks to an embedding model, store in a vector database, and search code b
 ## Install
 
 ```bash
-go get github.com/zoobzio/chisel
+go get github.com/zoobz-io/chisel
 ```
 
 **Language providers** (install only what you need):
 
 ```bash
-go get github.com/zoobzio/chisel/golang     # Go (stdlib, no deps)
-go get github.com/zoobzio/chisel/markdown   # Markdown (no deps)
-go get github.com/zoobzio/chisel/typescript # TypeScript/JavaScript (tree-sitter)
-go get github.com/zoobzio/chisel/python     # Python (tree-sitter)
-go get github.com/zoobzio/chisel/rust       # Rust (tree-sitter)
+go get github.com/zoobz-io/chisel/golang     # Go (stdlib, no deps)
+go get github.com/zoobz-io/chisel/markdown   # Markdown (no deps)
+go get github.com/zoobz-io/chisel/typescript # TypeScript/JavaScript (tree-sitter)
+go get github.com/zoobz-io/chisel/python     # Python (tree-sitter)
+go get github.com/zoobz-io/chisel/rust       # Rust (tree-sitter)
 ```
 
 Requires Go 1.24+.
@@ -76,9 +76,9 @@ import (
     "context"
     "fmt"
 
-    "github.com/zoobzio/chisel"
-    "github.com/zoobzio/chisel/golang"
-    "github.com/zoobzio/chisel/typescript"
+    "github.com/zoobz-io/chisel"
+    "github.com/zoobz-io/chisel/golang"
+    "github.com/zoobz-io/chisel/typescript"
 )
 
 func main() {
@@ -174,7 +174,7 @@ Symbol names and kinds become metadata. Line ranges enable source navigation. Co
 
 Chisel provides the chunking layer for code intelligence pipelines:
 
-- **[vicky](https://github.com/zoobzio/vicky)** — Code search and retrieval service
+- **[vicky](https://github.com/zoobz-io/vicky)** — Code search and retrieval service
 
 ## Documentation
 

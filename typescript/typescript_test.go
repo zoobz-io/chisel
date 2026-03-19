@@ -4,7 +4,7 @@ import (
 	"context"
 	"testing"
 
-	"github.com/zoobzio/chisel"
+	"github.com/zoobz-io/chisel"
 )
 
 func TestProvider_Language(t *testing.T) {

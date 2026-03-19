@@ -1,4 +1,4 @@
-module github.com/zoobzio/chisel
+module github.com/zoobz-io/chisel
 
 go 1.24
 

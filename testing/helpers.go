@@ -4,7 +4,7 @@ package testing
 import (
 	"testing"
 
-	"github.com/zoobzio/chisel"
+	"github.com/zoobz-io/chisel"
 )
 
 // AssertChunkCount checks that the expected number of chunks were produced.

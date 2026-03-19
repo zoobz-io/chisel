@@ -17,7 +17,7 @@ testing/
 The `testing` package provides domain-specific assertion helpers:
 
 ```go
-import chitesting "github.com/zoobzio/chisel/testing"
+import chitesting "github.com/zoobz-io/chisel/testing"
 
 func TestMyChunker(t *testing.T) {
     chunks := getChunks()

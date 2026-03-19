@@ -8,7 +8,7 @@ import (
 	"go/parser"
 	"go/token"
 
-	"github.com/zoobzio/chisel"
+	"github.com/zoobz-io/chisel"
 )
 
 // Provider chunks Go source files using go/parser.
