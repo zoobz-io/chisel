@@ -5,7 +5,7 @@ import (
 	"context"
 	"strings"
 
-	"github.com/zoobzio/chisel"
+	"github.com/zoobz-io/chisel"
 )
 
 // Provider chunks Markdown files by header sections.

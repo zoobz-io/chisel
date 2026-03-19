@@ -1,5 +1,5 @@
-module github.com/zoobzio/chisel/golang
+module github.com/zoobz-io/chisel/golang
 
 go 1.24.5
 
-require github.com/zoobzio/chisel v0.0.0
+require github.com/zoobz-io/chisel v0.0.0

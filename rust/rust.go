@@ -7,7 +7,7 @@ import (
 	sitter "github.com/smacker/go-tree-sitter"
 	"github.com/smacker/go-tree-sitter/rust"
 
-	"github.com/zoobzio/chisel"
+	"github.com/zoobz-io/chisel"
 )
 
 // Provider chunks Rust files using tree-sitter.

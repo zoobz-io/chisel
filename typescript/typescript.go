@@ -7,7 +7,7 @@ import (
 	sitter "github.com/smacker/go-tree-sitter"
 	"github.com/smacker/go-tree-sitter/typescript/typescript"
 
-	"github.com/zoobzio/chisel"
+	"github.com/zoobz-io/chisel"
 )
 
 // Provider chunks TypeScript files using tree-sitter.

@@ -8,7 +8,7 @@ Performance benchmarks for chisel providers.
 make test-bench
 
 # Or directly:
-go test -bench=. github.com/zoobzio/chisel/testing/benchmarks -benchmem
+go test -bench=. github.com/zoobz-io/chisel/testing/benchmarks -benchmem
 ```
 
 ## Current Results

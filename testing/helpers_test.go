@@ -3,7 +3,7 @@ package testing
 import (
 	"testing"
 
-	"github.com/zoobzio/chisel"
+	"github.com/zoobz-io/chisel"
 )
 
 func TestFindBySymbol(t *testing.T) {
